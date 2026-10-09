@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import JuegosForm from '../components/JuegosForm'
+import JuegosView from '../components/juegosView';
+
+
 
 function JuegosContainers() {
-    const handleCreatJuego = (juego)=>{
-        console.log("Juego creado)")
+
+    const [juegos, setJuegos] = useState([]);
+
+    const handleCreateJuegos = (juego)=>{
+        setJuegos([...juegos, juego]);
     };
   return (
     <div className='container'>
         <div className='row'>
             <div className='col-3'>
-                <JuegosForm onCreateJuego={handleCreatJuego}/>
+                <JuegosForm onCreateJuego={handleCreateJuegos}/>
             </div>
             <div className="col-8">
-                <h1>Lista de juegos</h1>
+                <JuegosView juegos={juegos}></JuegosView>
             </div>
         </div>
 
